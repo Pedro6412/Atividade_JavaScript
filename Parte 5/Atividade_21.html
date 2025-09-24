@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Fila de Atendimento</title>
+</head>
+<body>
+  <h1>Controle de Fila</h1>
+
+  <input type="text" id="nome" placeholder="Digite o nome">
+  <button onclick="entrarNaFila()">Entrar na fila</button>
+  <button onclick="atender()">Atender</button>
+
+  <h2>Pessoas na Fila</h2>
+  <pre id="fila"></pre>
+
+  <h2>Histórico de Atendimentos</h2>
+  <pre id="historico"></pre>
+
+  <script>
+    
+    let fila = [];        
+    let historico = [];   
+
+
+    function formatarData(ms) {
+      return new Intl.DateTimeFormat("pt-BR", {
+        dateStyle: "short",
+        timeStyle: "medium"
+      }).format(ms);
+    }
+
+    function entrarNaFila() {
+      const nome = document.getElementById("nome").value.trim();
+      if (!nome) {
+        alert("Digite um nome!");
+        return;
+      }
+
+      const entrada = Date.now();
+      fila.push({ nome, entrada });
+
+      document.getElementById("nome").value = "";
+      atualizarTela();
+    }
+
+    function atender() {
+      if (fila.length === 0) {
+        alert("Fila vazia!");
+        return;
+      }
+
+      const pessoa = fila.shift(); 
+      const saida = Date.now();
+      const tempo = Math.floor((saida - pessoa.entrada) / 1000); 
+
+      historico.push({
+        nome: pessoa.nome,
+        entrada: formatarData(pessoa.entrada),
+        saida: formatarData(saida),
+        tempo: tempo + " segundos"
+      });
+
+      atualizarTela();
+    }
+
+    function atualizarTela() {
+
+      document.getElementById("fila").textContent = fila.map(
+        p => `${p.nome} - entrou às ${formatarData(p.entrada)}`
+      ).join("\n");
+
+ 
+      document.getElementById("historico").textContent = historico.map(
+        h => `${h.nome} | Entrou: ${h.entrada} | Saiu: ${h.saida} | Esperou: ${h.tempo}`
+      ).join("\n");
+    }
+  </script>
+</body>
+</html>

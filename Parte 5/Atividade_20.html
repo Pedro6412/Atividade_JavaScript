@@ -1,0 +1,80 @@
+\\ Atividades que precisam de entrada de dados:
+ | 7ª | 8º | 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade 20</title>
+</head>
+    <h2>Atividade 5</h2>
+    <p><strong>Descrição: </strong> Descubra se você é criança, adolecente ou adulto. </p>
+    <p id = "Atividade_5"></p>
+    <p></p>
+
+    <h2>Atividade 6</h2>
+    <p><strong>Descrição: </strong> Descubra se o número é PAR ou IMPAR. </p>
+    <p id = "atv_6"></p>
+
+    <h2>Atividade 7</h2>
+    <p><strong>Descrição: </strong> Verificar se você foi aprovado na matéria. </p>
+    <p id = "atv_7"></p>
+
+    <h2>Atividade 8</h2>
+    <p><strong>Descrição: </strong> Saber se o número que o usuário digitou é positivo, negativo ou zero. </p>
+    <p id = "atv_8"></p>
+    
+
+<body>
+    <!-- Atividade 5 -->
+    <script>
+            const idade = Number(prompt('Digite a sua idade: '))
+            if(idade <= 12){
+                document.getElementById('Atividade_5').innerText = 'Você é uma Criança.'
+            }
+            else if (idade >= 12 && idade <= 17){
+                document.getElementById('Atividade_5').innerText = 'Você é um Adolecente.'
+            }
+            else{
+                document.getElementById('Atividade_5').innerText = 'Você é um Adulto.'
+            }
+    </script>
+    <!-- Atividade 6 -->
+
+    <script>
+        let numero = Number(prompt('Digite um número: '))
+        let conferir = numero % 2
+        if(conferir == 0){
+            document.getElementById('atv_6').innerText = `O número ${numero} é PAR`
+        }
+        else{
+            document.getElementById('atv_6').innerText = `O número ${numero} é IMPAR`
+        }
+
+    </script>
+
+    <!-- Atividade 7 -->
+
+    <script>
+        const nota = Number(prompt('Digite a nota do bimestre: '))
+        if(nota >= 7){
+            document.getElementId('atv_7').innerText = 'Você foi aprovado!!! Parabéns =)' 
+        }
+        else if(nota >= 5 && nota <7){
+            document.getElementById('atv_7').innerText = 'Você está de recuperação, Estude !! =0'
+        }
+        else{
+            document.getElementById('atv_7').innerText = 'Você foi reprovado =('
+        }
+    </script>
+
+    <!-- Atividade 8 -->
+     <script>
+        let valores = Number(prompt('Digite um valor: '));
+        let verificador = valores == 0?"Zero": (valores > 0 ? "Positivo" : "Negativo");
+        document.getElementById('atv_8').innerText = verificador
+    </script>
+    
+</body>
+</html>
